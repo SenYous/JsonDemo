@@ -10,6 +10,10 @@ namespace TestDemo
     {
         static void Main(string[] args)
         {
+            //测试控制器
+            string str = "测试控制器";
+            Console.WriteLine(str);
+            Console.ReadKey();
         }
     }
 }
