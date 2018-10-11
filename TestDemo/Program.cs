@@ -42,10 +42,98 @@ namespace TestDemo
                 return numsAr[0].Key;
         }
 
+        public static IList<string> FizzBuzz(int n)
+        {
+            List<string> ret = new List<string>();
+            for (int i = 1; i <= n; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    ret.Add("FizzBuzz");
+                }
+                else if (i % 3 == 0)
+                {
+                    ret.Add("Fizz");
+                }
+                else if (i % 5 == 0)
+                {
+                    ret.Add("Buzz");
+                }
+                else
+                    ret.Add(i.ToString());
+            }
 
+            return ret;
+        }
 
+        public static int LongestPalindrome(string s)
+        {
+            var sList = s.GroupBy(x => x).Select(a => new { key = a.Key, count = a.Count(), bSingle = a.Count() % 2 != 0 }).ToList();
+            int iList = sList.Select(x => new { sumCount = x.bSingle ? x.count - 1 : x.count }).Sum(a => a.sumCount);
+            if (sList.Any(x => x.bSingle == true))
+                return iList + 1;
+            else
+                return iList;
+
+        }
+
+        public static string ToHex(int num)
+        {
+            return num.ToString("X").ToLower();
+        }
+
+        public static int FindNthDigit(int n)
+        {
+            if (n < 9)
+                return n;
+            int inew = 9;
+            long iMinSum = 0;
+            long iMaxSum = 0;
+            int i = 1;
+            for (; n > iMaxSum; i++)
+            {
+                iMinSum = inew * Convert.ToInt64(i.ToString().PadRight(i, '0'));
+                iMaxSum += iMinSum;
+            }
+            long mult = i - 1;
+            long number = n - (iMaxSum - iMinSum);
+            int than = Convert.ToInt32(number % mult);
+            int thanMin = 0;
+            if (than == 0)
+                thanMin = 1;
+            double ret = Math.Truncate(Convert.ToDouble(number - thanMin) / mult * 10) / 10 + Convert.ToInt32(1.ToString().PadRight(i - 1, '0'));
+
+            int iret = (int)ret;
+            if (than == 0)
+            {
+                Console.WriteLine(Convert.ToInt32(iret.ToString()[iret.ToString().Length - 1].ToString()));
+                return Convert.ToInt32(iret.ToString()[iret.ToString().Length - 1].ToString());
+            }
+            else
+            {
+                Console.WriteLine(Convert.ToInt32(iret.ToString()[than - 1].ToString()));
+                return Convert.ToInt32(iret.ToString()[than - 1].ToString());
+            }
+        }
+
+        public static int FindNthDigis(int n)
+        {
+            string s = "";
+            for (int i = 1; i <= n; i++)
+                s += i.ToString();
+            Console.WriteLine(Convert.ToInt32(s[n - 1].ToString()));
+            //Console.WriteLine(s.Length);
+            return Convert.ToInt32(s[n - 1].ToString());
+        }
         static void Main(string[] args)
         {
+            FindNthDigis(1000);
+            FindNthDigit(1000);
+            FindNthDigis(1001);
+            FindNthDigit(1001);
+            FindNthDigis(1002);
+            FindNthDigit(1002);
+            Console.ReadKey();
             //测试控制器
             //string str = "测试控制器2.0";
             //Console.WriteLine(str);
