@@ -6,6 +6,7 @@ using System.Text;
 using MongoDB.Driver;
 using MongoDB.Driver.Core;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace TestDemo
 {
@@ -122,17 +123,94 @@ namespace TestDemo
             for (int i = 1; i <= n; i++)
                 s += i.ToString();
             Console.WriteLine(Convert.ToInt32(s[n - 1].ToString()));
-            //Console.WriteLine(s.Length);
+            Console.WriteLine(s.Length);
             return Convert.ToInt32(s[n - 1].ToString());
         }
+
+        public static int GetMoneyAmount(int n)
+        {
+            int ret = 0;
+            int retLast = 0;
+            for (int i = 0; n > 1; i++)
+            {
+                n = n / 2;
+                if (i != 0)
+                    ret += (n % 2 == 0 ? 0 : 1);
+                ret += n;
+                retLast = retLast + ret;
+            }
+            return retLast;
+        }
+
+        /// <summary>
+        /// 获得指定路径下所有文件名
+        /// </summary>
+        /// <param name="sw">文件写入流</param>
+        /// <param name="path">文件写入流</param>
+        /// <param name="indent">输出时的缩进量</param>
+        public static void getFileName(string path)
+        {
+            DirectoryInfo root = new DirectoryInfo(path);
+            foreach (FileInfo f in root.GetFiles())
+            {
+                Console.WriteLine(f.Name + "------" + LastWriteTime(path, f.Name));
+            }
+        }
+
+        /// <summary>
+        /// 获得指定路径下所有子目录名
+        /// </summary>
+        /// <param name="path">文件夹路径</param>
+        /// <param name="indent">输出时的缩进量</param>
+        public static void getDirectory(string path)
+        {
+            DirectoryInfo root = new DirectoryInfo(path);
+            foreach (DirectoryInfo d in root.GetDirectories())
+            {
+                Console.WriteLine("文件夹：" + d.Name + "------" + LastWriteTime(path, d.Name));
+                //getDirectory(d.FullName);
+            }
+            getFileName(path);
+        }
+
+        public static string LastWriteTime(string path, string name)
+        {
+            FileInfo fi = new FileInfo(path + "\\" + name);
+            return fi.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        public static void Read(string path)
+        {
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                Console.WriteLine(line.ToString());
+            }
+            sr.Close();
+            sr.Dispose();
+        }
+
         static void Main(string[] args)
         {
-            FindNthDigis(1000);
-            FindNthDigit(1000);
-            FindNthDigis(1001);
-            FindNthDigit(1001);
-            FindNthDigis(1002);
-            FindNthDigit(1002);
+            //GetMoneyAmount(7);
+            //FindNthDigis(370);
+            //FindNthDigit(1000);
+
+            #region 获取文件目录
+
+            //获取当前程序所在的文件路径
+            //string rootPath = Directory.GetCurrentDirectory();
+            //string parentPath = Directory.GetParent(rootPath).FullName;//上级目录
+            //string topPath = Directory.GetParent(parentPath).FullName;//上上级目录
+            //getDirectory(topPath);
+
+            #endregion
+
+
+
+            Read("E:\\项目\\退件代码.txt");
+
             Console.ReadKey();
             //测试控制器
             //string str = "测试控制器2.0";
