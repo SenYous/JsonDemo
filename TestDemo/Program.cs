@@ -7,6 +7,8 @@ using MongoDB.Driver;
 using MongoDB.Driver.Core;
 using System.Threading.Tasks;
 using System.IO;
+using System.Reflection;
+using System.Configuration;
 
 namespace TestDemo
 {
@@ -210,9 +212,12 @@ namespace TestDemo
 
         #endregion
 
-        static void Main(string[] args)
+       static void Main(string[] args)
         {
             #region 注释
+
+            //var s = new Square(10);
+            //Resize(s);
 
             //GetMoneyAmount(7);
             //FindNthDigis(370);
@@ -264,6 +269,13 @@ namespace TestDemo
             Console.ReadKey();
         }
 
+        public static void Resize(Quadrangle r)
+        {
+            while (r.Height >= r.Width)
+            {
+                r.Width += 1;
+            }
+        }
     }
 
     #region 类
@@ -279,5 +291,34 @@ namespace TestDemo
         public DateTime birthday { get; set; }
         public string passengerName { get; set; }
     }
+    #endregion
+
+
+    #region 依赖注入
+    // 四边形
+    public abstract class Quadrangle
+    {
+        public virtual long Width { get; set; }
+        public virtual long Height { get; set; }
+    }
+    // 矩形
+    public class Rectangle : Quadrangle
+    {
+        public override long Height { get; set; }
+
+        public override long Width { get; set; }
+
+    }
+    // 正方形
+    public class Square : Quadrangle
+    {
+        public long _side;
+
+        public Square(long side)
+        {
+            _side = side;
+        }
+    }
+
     #endregion
 }
