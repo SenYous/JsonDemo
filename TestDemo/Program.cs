@@ -12,6 +12,8 @@ namespace TestDemo
 {
     class Program
     {
+        #region LeetCode算法题目
+
         public char FindTheDifference(string s, string t)
         {
             if (t == "")
@@ -142,6 +144,10 @@ namespace TestDemo
             return retLast;
         }
 
+
+        #endregion
+
+        #region 硬盘内文件读取
         /// <summary>
         /// 获得指定路径下所有文件名
         /// </summary>
@@ -173,12 +179,22 @@ namespace TestDemo
             getFileName(path);
         }
 
+        /// <summary>
+        /// 文件最后写入时间
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static string LastWriteTime(string path, string name)
         {
             FileInfo fi = new FileInfo(path + "\\" + name);
             return fi.LastWriteTime.ToString("yyyy-MM-dd HH:mm:ss");
         }
 
+        /// <summary>
+        /// 读取文件内容
+        /// </summary>
+        /// <param name="path"></param>
         public static void Read(string path)
         {
             StreamReader sr = new StreamReader(path, Encoding.Default);
@@ -191,8 +207,13 @@ namespace TestDemo
             sr.Dispose();
         }
 
+
+        #endregion
+
         static void Main(string[] args)
         {
+            #region 注释
+
             //GetMoneyAmount(7);
             //FindNthDigis(370);
             //FindNthDigit(1000);
@@ -206,50 +227,46 @@ namespace TestDemo
             //getDirectory(topPath);
 
             #endregion
+            //Read("E:\\项目\\退件代码.txt");
 
+            //Order or = new Order();
+            //or.id = 1;
+            //or.name = "方法一";
+            //or.passengers = new List<Passenger>();
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Passenger pass = new Passenger();
+            //    pass.birthday = DateTime.Now;
+            //    pass.passengerName = i.ToString();
+            //    or.passengers.Add(pass);
+            //}
+            //Console.WriteLine($"{or.name}==={or.passengers.Count}");
 
+            //or = new Order();
 
-            Read("E:\\项目\\退件代码.txt");
-
-            Console.ReadKey();
-            //测试控制器
-            //string str = "测试控制器2.0";
-            //Console.WriteLine(str);
+            //or.id = 2;
+            //or.name = "方法二";
+            //List<Passenger> list = new List<Passenger>();
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    Passenger pass = new Passenger();
+            //    pass.birthday = DateTime.Now;
+            //    pass.passengerName = i.ToString();
+            //    list.Add(pass);
+            //}
+            //or.passengers = list;
+            //Console.WriteLine($"{or.name}==={or.passengers.Count}");
             //Console.ReadKey();
 
-            Order or = new Order();
-            or.id = 1;
-            or.name = "方法一";
-            or.passengers = new List<Passenger>();
-            for (int i = 0; i < 3; i++)
-            {
-                Passenger pass = new Passenger();
-                pass.birthday = DateTime.Now;
-                pass.passengerName = i.ToString();
-                or.passengers.Add(pass);
-            }
-            Console.WriteLine($"{or.name}==={or.passengers.Count}");
+            #endregion
 
-            or = new Order();
 
-            or.id = 2;
-            or.name = "方法二";
-            List<Passenger> list = new List<Passenger>();
-            for (int i = 0; i < 3; i++)
-            {
-                Passenger pass = new Passenger();
-                pass.birthday = DateTime.Now;
-                pass.passengerName = i.ToString();
-                list.Add(pass);
-            }
-            or.passengers = list;
-            Console.WriteLine($"{or.name}==={or.passengers.Count}");
             Console.ReadKey();
         }
 
     }
 
-
+    #region 类
     public class Order
     {
         public long id { get; set; }
@@ -262,5 +279,5 @@ namespace TestDemo
         public DateTime birthday { get; set; }
         public string passengerName { get; set; }
     }
-
+    #endregion
 }
