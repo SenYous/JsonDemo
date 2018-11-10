@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 using System.Configuration;
+using System.Threading;
 
 namespace TestDemo
 {
@@ -212,7 +213,7 @@ namespace TestDemo
 
         #endregion
 
-       static void Main(string[] args)
+        static void Main(string[] args)
         {
             #region 注释
 
@@ -265,8 +266,109 @@ namespace TestDemo
 
             #endregion
 
+            Program p = new Program();
+            p.Print();
+
 
             Console.ReadKey();
+        }
+        void Print()
+        {
+            #region 单例模式
+            //Task.Run(() =>
+            //{
+            //    var model = DesignPattern.Singleton.GetInstance();
+            //    Console.WriteLine("任务1：" + model.GetDateTimeNow());
+            //});
+
+
+            //Task.Run(() =>
+            //{
+            //    Thread.Sleep(2000);
+            //    var model = DesignPattern.Singleton.GetInstance();
+            //    Console.WriteLine("任务2：" + model.GetDateTimeNow());
+            //});
+            #endregion
+
+            #region 简单工厂模式
+            //// 客户想点一个西红柿炒蛋        
+            //DesignPattern.Food food1 = DesignPattern.FoodSimpleFactory.CreateFood("西红柿炒蛋");
+            //food1.Print();
+
+            //// 客户想点一个土豆肉丝
+            //DesignPattern.Food food2 = DesignPattern.FoodSimpleFactory.CreateFood("土豆肉丝");
+            //food2.Print();
+
+            #endregion
+
+            #region 工厂方法模式
+            //// 初始化做菜的两个工厂（）
+            //DesignPattern.Creator shreddedPorkWithPotatoesFactory = new DesignPattern.ShreddedPorkWithPotatoesFactory2();
+            //DesignPattern.Creator tomatoScrambledEggsFactory = new DesignPattern.TomatoScrambledEggsFactory2();
+
+            //// 开始做西红柿炒蛋
+            //DesignPattern.Food2 tomatoScrambleEggs = tomatoScrambledEggsFactory.CreateFoddFactory();
+            //tomatoScrambleEggs.Print();
+
+            ////开始做土豆肉丝
+            //DesignPattern.Food2 shreddedPorkWithPotatoes = shreddedPorkWithPotatoesFactory.CreateFoddFactory();
+            //shreddedPorkWithPotatoes.Print();
+
+            //Console.Read();
+            #endregion
+
+            #region 抽象工厂模式
+            //// 南昌工厂制作南昌的鸭脖和鸭架
+            //DesignPattern.AbstractFactory nanChangFactory = new DesignPattern.NanChangFactory();
+            //DesignPattern.YaBo nanChangYabo = nanChangFactory.CreateYaBo();
+            //nanChangYabo.Print();
+            //DesignPattern.YaJia nanChangYajia = nanChangFactory.CreateYaJia();
+            //nanChangYajia.Print();
+
+            //// 上海工厂制作上海的鸭脖和鸭架
+            //DesignPattern.AbstractFactory shangHaiFactory = new DesignPattern.ShangHaiFactory();
+            //shangHaiFactory.CreateYaBo().Print();
+            //shangHaiFactory.CreateYaJia().Print();
+
+            #endregion
+
+            #region 建造者模式
+            //// 客户找到电脑城老板说要买电脑，这里要装两台电脑
+            //// 创建指挥者和构造者
+            //DesignPattern.Director director = new DesignPattern.Director();
+            //DesignPattern.Builder b1 = new DesignPattern.ConcreteBuilder1();
+            //DesignPattern.Builder b2 = new DesignPattern.ConcreteBuilder2();
+
+            //// 老板叫员工去组装第一台电脑
+            //director.Construct(b1);
+
+            //// 组装完，组装人员搬来组装好的电脑
+            //DesignPattern.Computer computer1 = b1.GetComputer();
+            //computer1.Show();
+
+            //// 老板叫员工去组装第二台电脑
+            //director.Construct(b2);
+            //DesignPattern.Computer computer2 = b2.GetComputer();
+            //computer2.Show();
+
+            #endregion
+
+            #region 原型模式
+            //// 孙悟空 原型
+            //DesignPattern.MonkeyKingPrototype prototypeMonkeyKing = new DesignPattern.ConcretePrototype("MonkeyKing");
+
+            //// 变一个
+            //DesignPattern.MonkeyKingPrototype cloneMonkeyKing = prototypeMonkeyKing.Clone() as DesignPattern.ConcretePrototype;
+            //Console.WriteLine("Cloned1:\t" + cloneMonkeyKing.Id);
+
+            //// 变两个
+            //DesignPattern.MonkeyKingPrototype cloneMonkeyKing2 = prototypeMonkeyKing.Clone() as DesignPattern.ConcretePrototype;
+            //Console.WriteLine("Cloned2:\t" + cloneMonkeyKing2.Id);
+            #endregion
+
+            #region 适配器模式
+
+            #endregion
         }
 
         public static void Resize(Quadrangle r)
