@@ -437,6 +437,43 @@ namespace TestDemo
         #endregion
 
         #region 适配器模式
+        /// <summary>
+        /// 三个孔的插头，也就是适配器模式中的目标角色
+        /// </summary>
+        public interface IThreeHole
+        {
+            void Request();
+        }
+
+        /// <summary>
+        /// 两个孔的插头，源角色——需要适配的类
+        /// </summary>
+        public abstract class TwoHole
+        {
+            public void SpecificRequest()
+            {
+                Console.WriteLine("我是两个孔的插头");
+            }
+        }
+
+        /// <summary>
+        /// 适配器类，接口要放在类的后面
+        /// 适配器类提供了三个孔插头的行为，但其本质是调用两个孔插头的方法
+        /// </summary>
+        public class PowerAdapter : TwoHole, IThreeHole
+        {
+            /// <summary>
+            /// 实现三个孔插头接口方法
+            /// </summary>
+            public void Request()
+            {
+                // 调用两个孔插头方法
+                this.SpecificRequest();
+            }
+        }
+        #endregion
+
+        #region 桥接模式
 
         #endregion
     }

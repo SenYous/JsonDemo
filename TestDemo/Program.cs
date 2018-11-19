@@ -367,6 +367,12 @@ namespace TestDemo
             #endregion
 
             #region 适配器模式
+            //// 现在客户端可以通过电适配要使用2个孔的插头了
+            //DesignPattern.IThreeHole threehole = new DesignPattern.PowerAdapter();
+            //threehole.Request();
+            #endregion
+
+            #region 桥接模式
 
             #endregion
         }
